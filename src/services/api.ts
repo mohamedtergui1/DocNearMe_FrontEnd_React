@@ -1,8 +1,9 @@
 import axios  from "axios";
-import { environment } from "../environement/dev";
+import { environment } from "../environment/dev";
+import { toast } from 'sonner';
 
 const api = axios.create({
-  baseURL: environment.url,
+  baseURL: environment.getApi(),
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -31,7 +32,13 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    if(response?.data.message){
+      console.log(response.data.message)
+      toast.success(response.data.message);
+    }
+   return  response.data
+  },
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem("access_token");
