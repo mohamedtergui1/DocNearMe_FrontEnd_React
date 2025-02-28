@@ -1,7 +1,6 @@
 import { createContext, useContext } from 'react';
 
-
-interface AuthUser {
+ export interface AuthUser {
   user: {
     id: string;
     email: string;
@@ -14,15 +13,12 @@ interface AuthUser {
   refreshExpiresIn: number | null;
 }
 
-
-
-const initialAuthState: AuthUser = {
+export const initialAuthState: AuthUser = {
   user: null,
   accessToken: null,
   refreshToken: null,
   refreshExpiresIn: null,
 };
-
 
 export const AuthUserContext = createContext<{
   authUser: AuthUser;
@@ -40,3 +36,4 @@ export const useAuthUser = () => {
   }
   return context;
 };
+

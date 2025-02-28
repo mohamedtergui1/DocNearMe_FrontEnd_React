@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { UserCircle } from 'lucide-react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { AuthUserContext } from '../../../context/auth-user';
 import api from '../../../services/api';
 import { useNavigate } from 'react-router-dom';
 
@@ -55,10 +54,7 @@ const initialValues: FormValues = {
 
 function SignUp() {
   const navigate = useNavigate();
-  const  {user,
-  accessToken
-  refreshToken,
-  refreshExpiresIn} = useContext(AuthUserContext)
+
 
   const handleSubmit = async (values: FormValues, { setSubmitting, setErrors }: { setSubmitting: (isSubmitting: boolean) => void, setErrors: (errors: any) => void }) => {
     try {
